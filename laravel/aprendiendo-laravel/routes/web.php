@@ -37,8 +37,25 @@ Route::get('/fecha', function () {
  * opcional cambia con un {titulo"?"} y dando 
  * valor por defecto a la variable
  */
-Route::get('/pelicula/{titulo?}', function ($titulo = 'No pusiste pelicula') {
+// Route::get('/pelicula/{titulo?}', function ($titulo = 'No pusiste pelicula') {
+//     return view('paginas.pelicula', array(
+//         'titulo' => $titulo
+//     ));
+// });
+
+/**
+ * Esto es cuando queremos agregar una
+ * condicion y se utilizan expresiones
+ * regulares
+ */
+Route::get('/pelicula/{titulo?}/{year?}', 
+            function ($titulo = 'No pusiste pelicula',
+                        $year = 2019) {
     return view('paginas.pelicula', array(
-        'titulo' => $titulo
+        'titulo' => $titulo,
+        'year' => $year
     ));
-});
+})->where(array(
+    'titulo' => '[a-zA-Z]+',
+    'yera' => '[0-9]+'
+));
