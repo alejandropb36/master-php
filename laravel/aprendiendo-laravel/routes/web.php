@@ -51,7 +51,7 @@ Route::get('/fecha', function () {
 Route::get('/pelicula/{titulo?}/{year?}', 
             function ($titulo = 'No pusiste pelicula',
                         $year = 2019) {
-    return view('paginas.pelicula', array(
+    return view('peliculas.pelicula', array(
         'titulo' => $titulo,
         'year' => $year
     ));
@@ -59,3 +59,19 @@ Route::get('/pelicula/{titulo?}/{year?}',
     'titulo' => '[a-zA-Z]+',
     'yera' => '[0-9]+'
 ));
+
+Route::get('/listado-peliculas', function () {
+    $titulo = "Listado de Peliculas";
+    $listado = array('Batman', 'Superman', 'Spiderman', 'Avengers');
+
+    return view('peliculas.listado')
+            ->with('titulo', $titulo)
+            ->with('listado', $listado);
+});
+
+/**
+ * Plantilla base o layout clase 334 Laravel
+ */
+Route::get('/pagina-generica', function () {
+    return view('paginas.pagina');
+});
