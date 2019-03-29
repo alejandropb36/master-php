@@ -11,17 +11,35 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () 
+{
     return view('welcome');
 });
 
+Route::get('/peliculas/{pagina?}', 'PeliculasController@index');
+/**
+ * Para ponerle nombre a la ruta hay que pasar
+ * un array con los parametros 'uses' y 'as'
+ */
+Route::get('/detalle', [
+    'uses' => 'PeliculasController@detalle',
+    'as' => 'detalle.pelicula'
+]);
+
+/**
+ * Esto ya crea todas las rutas estandar para un CRUD
+ * lo puedes visualizar con php artisan route:list
+ */
+Route::resource('usuario', 'UsuarioController');
+
+/*
 Route::get('/fecha', function () {
     $titulo = "Fecha del día de hoy";
     return view('paginas.fecha', array(
         'titulo' => $titulo
     ));
 });
-
+*/
 /**
  * Esto es cuando el parametro es de manera
  * obligatoria
@@ -48,30 +66,31 @@ Route::get('/fecha', function () {
  * condicion y se utilizan expresiones
  * regulares
  */
-Route::get('/pelicula/{titulo?}/{year?}', 
-            function ($titulo = 'No pusiste pelicula',
-                        $year = 2019) {
-    return view('peliculas.pelicula', array(
-        'titulo' => $titulo,
-        'year' => $year
-    ));
-})->where(array(
-    'titulo' => '[a-zA-Z]+',
-    'yera' => '[0-9]+'
-));
+// Route::get('/pelicula/{titulo?}/{year?}', 
+//             function ($titulo = 'No pusiste pelicula',
+//                         $year = 2019) {
+//     return view('peliculas.pelicula', array(
+//         'titulo' => $titulo,
+//         'year' => $year
+//     ));
+// })->where(array(
+//     'titulo' => '[a-zA-Z]+',
+//     'yera' => '[0-9]+'
+// ));
 
-Route::get('/listado-peliculas', function () {
-    $titulo = "Listado de Peliculas";
-    $listado = array('Batman', 'Superman', 'Spiderman', 'Avengers');
+// Route::get('/listado-peliculas', function () {
+//     $titulo = "Listado de Peliculas";
+//     $listado = array('Batman', 'Superman', 'Spiderman', 'Avengers');
 
-    return view('peliculas.listado')
-            ->with('titulo', $titulo)
-            ->with('listado', $listado);
-});
+//     return view('peliculas.listado')
+//             ->with('titulo', $titulo)
+//             ->with('listado', $listado);
+// });
 
-/**
- * Plantilla base o layout clase 334 Laravel
- */
-Route::get('/pagina-generica', function () {
-    return view('paginas.pagina');
-});
+// /**
+//  * Plantilla base o layout clase 334 Laravel
+//  */
+// Route::get('/pagina-generica', function () {
+//     return view('paginas.pagina');
+// });
+
