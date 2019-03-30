@@ -36,6 +36,9 @@ Route::get('/detalle/{year?}', [
 
 Route::get('/redirigir', 'PeliculasController@redirigir');
 
+Route::get('/formulario', 'PeliculasController@formulario');
+Route::post('/recibir', 'PeliculasController@recibir');
+
 /**
  * Esto ya crea todas las rutas estandar para un CRUD
  * lo puedes visualizar con php artisan route:list
