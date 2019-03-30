@@ -18,12 +18,21 @@ class PeliculasController extends Controller
         //     'titulo' => $titulo,
         //     'pagina' => $pagina
         // ]);
-        
+
     }
 
-    public function detalle()
+    /**
+     * El $year es para el Middleware TestYear que se
+     * agrego en Kernel.php
+     */
+    public function detalle($year = null)
     {
         return view('pelicula.detalle');
+    }
+
+    public function redirigir()
+    {
+        return redirect()->action('PeliculasController@detalle');
     }
 
 }

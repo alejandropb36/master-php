@@ -11,20 +11,30 @@
 |
 */
 
-Route::get('/', function () 
+Route::get('/', function ()
 {
     return view('welcome');
 });
 
+/**
+ * Rutas de peliculas
+ */
 Route::get('/peliculas/{pagina?}', 'PeliculasController@index');
 /**
  * Para ponerle nombre a la ruta hay que pasar
- * un array con los parametros 'uses' y 'as'
+ * un array con los parametros 'uses' y 'as'.
+ * 
+ * Para el Middleware se le agrego este mismo 
+ * elemento y manda llamar al middleware que
+ * agregamos en Kernel.php
  */
-Route::get('/detalle', [
+Route::get('/detalle/{year?}', [
+    'middleware' => 'testyear',
     'uses' => 'PeliculasController@detalle',
     'as' => 'detalle.pelicula'
 ]);
+
+Route::get('/redirigir', 'PeliculasController@redirigir');
 
 /**
  * Esto ya crea todas las rutas estandar para un CRUD
@@ -52,7 +62,7 @@ Route::get('/fecha', function () {
 
 /**
  * Esto es cuando el parametro es de manera
- * opcional cambia con un {titulo"?"} y dando 
+ * opcional cambia con un {titulo"?"} y dando
  * valor por defecto a la variable
  */
 // Route::get('/pelicula/{titulo?}', function ($titulo = 'No pusiste pelicula') {
@@ -66,7 +76,7 @@ Route::get('/fecha', function () {
  * condicion y se utilizan expresiones
  * regulares
  */
-// Route::get('/pelicula/{titulo?}/{year?}', 
+// Route::get('/pelicula/{titulo?}/{year?}',
 //             function ($titulo = 'No pusiste pelicula',
 //                         $year = 2019) {
 //     return view('peliculas.pelicula', array(
