@@ -45,6 +45,19 @@ Route::post('/recibir', 'PeliculasController@recibir');
  */
 Route::resource('usuario', 'UsuarioController');
 
+
+/**
+ * Rutas de Frutas
+ */
+Route::group(['prefix' => 'frutas'], function () {
+    Route::get('index', 'FrutaController@index');
+    Route::get('detail/{id}', 'FrutaController@detail');
+    Route::get('create', 'FrutaController@create');
+    Route::post('save', 'FrutaController@save');
+    Route::get('delete/{id}', 'FrutaController@delete');
+    Route::get('edit/{id}', 'FrutaController@edit');
+    Route::post('update', 'FrutaController@update');
+});
 /*
 Route::get('/fecha', function () {
     $titulo = "Fecha del día de hoy";
