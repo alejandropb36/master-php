@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// Response para sacar la imagen
+use Illuminate\Http\Response;
 // Esto corrige las regla unique de validacion
 use Illuminate\Validation\Rule;
 // Estos dos se usan para archivos
@@ -12,6 +14,11 @@ use Illuminate\Support\Facades\File;
 class UserController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function config(){
         return view('user.config');
     }
@@ -67,5 +74,10 @@ class UserController extends Controller
 
         return redirect()->route('config')
                         ->with(['message' => 'El usuario se actualizo correctamente']);
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('users')->get($filename);
+        return new Response($file, 200);
     }
 }
