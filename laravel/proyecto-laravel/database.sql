@@ -21,9 +21,6 @@ CREATE TABLE IF NOT EXISTS users(
     CONSTRAINT pk_users PRIMARY KEY (id)
 )ENGINE=InnoDb;
 
-INSERT INTO users VALUES(null, 'user', 'Alejandro', 'Ponce', 'alejandro.ponce', 'alejandro.ponce@email.com', 'pass', null, CURTIME(), CURTIME(), null);
-INSERT INTO users VALUES(null, 'user', 'Karla', 'Jazmin', 'karla.jazmin', 'karla.jazmin@email.com', 'pass', null, CURTIME(), CURTIME(), null);
-INSERT INTO users VALUES(null, 'user', 'Pedro', 'Aguayo', 'pedro.aguayo', 'pedro.aguayo@email.com', 'pass', null, CURTIME(), CURTIME(), null);
 
 -- Tabla de Imagenes
 CREATE TABLE IF NOT EXISTS images(
@@ -36,11 +33,6 @@ CREATE TABLE IF NOT EXISTS images(
     CONSTRAINT pk_images PRIMARY KEY (id),
     CONSTRAINT fk_images_users FOREIGN KEY (user_id) REFERENCES users(id)
 )ENGINE=InnoDb;
-
-INSERT INTO images VALUES(null, 1, 'test.jpg', 'image 1', CURTIME(), CURTIME());
-INSERT INTO images VALUES(null, 1, 'playa.jpg', 'image 1', CURTIME(), CURTIME());
-INSERT INTO images VALUES(null, 1, 'arena.jpg', 'image 1', CURTIME(), CURTIME());
-INSERT INTO images VALUES(null, 3, 'familia.jpg', 'image 3', CURTIME(), CURTIME());
 
 
 -- Tabla de Comentarios
@@ -56,9 +48,6 @@ CREATE TABLE IF NOT EXISTS comments(
     CONSTRAINT fk_comments_images FOREIGN KEY (image_id) REFERENCES images(id)  
 )ENGINE=InnoDb;
 
-INSERT INTO comments VALUES(null, 1, 4, 'Buena foto de familia!!', CURTIME(), CURTIME());
-INSERT INTO comments VALUES(null, 2, 1, 'Buena foto de playa!!', CURTIME(), CURTIME());
-INSERT INTO comments VALUES(null, 2, 4, 'que bueno!!', CURTIME(), CURTIME());
 
 -- Tabla de Likes
 CREATE TABLE IF NOT EXISTS likes(
@@ -71,6 +60,19 @@ CREATE TABLE IF NOT EXISTS likes(
     CONSTRAINT fk_likes_users FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT fk_likes_images FOREIGN KEY (image_id) REFERENCES images(id)  
 )ENGINE=InnoDb;
+
+INSERT INTO users VALUES(null, 'user', 'Alejandro', 'Ponce', 'alejandro.ponce', 'alejandro.ponce@email.com', 'pass', null, CURTIME(), CURTIME(), null);
+INSERT INTO users VALUES(null, 'user', 'Karla', 'Jazmin', 'karla.jazmin', 'karla.jazmin@email.com', 'pass', null, CURTIME(), CURTIME(), null);
+INSERT INTO users VALUES(null, 'user', 'Pedro', 'Aguayo', 'pedro.aguayo', 'pedro.aguayo@email.com', 'pass', null, CURTIME(), CURTIME(), null);
+
+INSERT INTO images VALUES(null, 1, 'test.jpg', 'image 1', CURTIME(), CURTIME());
+INSERT INTO images VALUES(null, 1, 'playa.jpg', 'image 1', CURTIME(), CURTIME());
+INSERT INTO images VALUES(null, 1, 'arena.jpg', 'image 1', CURTIME(), CURTIME());
+INSERT INTO images VALUES(null, 3, 'familia.jpg', 'image 3', CURTIME(), CURTIME());
+
+INSERT INTO comments VALUES(null, 1, 4, 'Buena foto de familia!!', CURTIME(), CURTIME());
+INSERT INTO comments VALUES(null, 2, 1, 'Buena foto de playa!!', CURTIME(), CURTIME());
+INSERT INTO comments VALUES(null, 2, 4, 'que bueno!!', CURTIME(), CURTIME());
 
 INSERT INTO likes VALUES(null, 1, 4, CURTIME(), CURTIME());
 INSERT INTO likes VALUES(null, 2, 4, CURTIME(), CURTIME());
