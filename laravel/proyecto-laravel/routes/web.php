@@ -51,3 +51,4 @@ Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.ava
  * Rutas de Imagenes
  */
 Route::get('/upload-image', 'ImageController@create')->name('image.create');
+Route::post('/image/save', 'ImageController@save')->name('image.save');

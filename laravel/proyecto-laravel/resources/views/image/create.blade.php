@@ -12,7 +12,7 @@
                             Subir nueva imagen
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST" enctype="multipart/form-data" >
+                            <form action=" {{route('image.save')}} " method="POST" enctype="multipart/form-data" >
                                 @csrf
 
                                 <div class="form-group row">
@@ -30,23 +30,23 @@
                                 </div>
 
                                 <div class="form-group row">
-                                        <label for="description" class="col-md-3 col-form-label text-md-right">Descripción</label>
-                                        <div class="col-md-7"> 
-                                            <textarea id="description" name="description" class="form-control" required>
-                                            </textarea>
-    
-                                            @if($errors->has('description'))
-                                                <span class="ivalid-feedback" role="alert">
-                                                    <strong> {{ $errors->first('description') }} </strong>
-                                                </span>
-                                            @endif
-                                        </div>  
+                                    <label for="description" class="col-md-3 col-form-label text-md-right">Descripción</label>
+                                    <div class="col-md-7"> 
+                                        <textarea id="description" name="description" class="form-control" required>
+                                        </textarea>
+
+                                        @if($errors->has('description'))
+                                            <span class="ivalid-feedback" role="alert">
+                                                <strong> {{ $errors->first('description') }} </strong>
+                                            </span>
+                                        @endif
+                                    </div>  
                                 </div>
 
                                 <div class="form-group row">
-                                        <div class="col-md-6 offset-md-3"> 
-                                            <input type="submit" class="btn btn-primary" value="Subir imagen">
-                                        </div>  
+                                    <div class="col-md-6 offset-md-3"> 
+                                        <input type="submit" class="btn btn-primary" value="Subir imagen">
+                                    </div>  
                                 </div>
                             </form>
                         </div>
