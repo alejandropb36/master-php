@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Iluminate\Support\Facades\Storage;
-use Iluminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Image;
 
 class ImageController extends Controller
@@ -29,11 +29,11 @@ class ImageController extends Controller
         ]);
 
         // Recoger datos
-        $image_path = $request->input('image_path');
+        $image_path = $request->file('image_path');
         $description = $request->input('description');
 
-        var_dump($image_path);
-        die();
+        // var_dump($image_path);
+        // die();
 
         //Asigna los valores a nuevo objeto
         $user = \Auth::user();
