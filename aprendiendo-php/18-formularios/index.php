@@ -65,6 +65,19 @@
             <input type="url" name="web" > 
             <br>
 
+            <textarea name="texto" id="texto" cols="30" rows="10">
+                Holi prro
+            </textarea>
+            <br>
+
+            Peliculas: 
+            <select name="peliculas" id="peliculas">
+                <option value="Spidermna">Spiderman</option>
+                <option value="Batman">Batman</option>
+                <option value="Ironman">Ironman</option>
+            </select>
+            <br>
+            
             <input type="submit" value="Eviar">
         </form>
     </body>
