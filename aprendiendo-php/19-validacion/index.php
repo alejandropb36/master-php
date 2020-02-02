@@ -7,6 +7,17 @@
     <body>
         <h1>Validación de Formularios en php</h1>
 
+        <?php 
+            if (isset($_GET['error'])) :
+                $error = $_GET['error'];
+        ?>
+            <div>
+                <h2 style="color: red;"> <?= $error ?> </h2>
+            </div>
+        <?php 
+            endif;
+        ?>
+
         <form action="procesar_formulario.php" method="POST">
             <div>    
                 <label for="nombre">Nombre: </label>
@@ -39,7 +50,7 @@
             <div>
                 <label for="password">Password: </label>
                 <br>
-                <input type="password" name="passwrod" required="required">
+                <input type="password" name="password" >
                 <br>
             </div>
 
