@@ -22,28 +22,28 @@
             <div>    
                 <label for="nombre">Nombre: </label>
                 <br>
-                <input type="text" name="nombre" required="required" pattern="[A-Za-z ]+">
+                <input type="text" name="nombre">
                 <br>
             </div>
 
             <div>
                 <label for="apellidos">Apellidos: </label>
                 <br>
-                <input type="text" name="apellidos"  required="required" pattern="[A-Za-z ]+">
+                <input type="text" name="apellidos">
                 <br>
             </div>
 
             <div>
                 <label for="edad">Edad: </label>
                 <br>
-                <input type="number" name="edad" required="required">
+                <input type="number" name="edad">
                 <br>
             </div>
 
             <div>
                 <label for="email">Email: </label>
                 <br>
-                <input type="email" name="email" required="required">
+                <input type="email" name="email">
                 <br>
             </div>
 
