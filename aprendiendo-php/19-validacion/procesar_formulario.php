@@ -13,17 +13,25 @@ if (!empty($_POST['nombre']) && !empty($_POST['apellidos'])
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (!is_string($nombre) && !preg_match("/[A-Za-z]+/", $nombre)) {
+    if (!is_string($nombre) || !preg_match("/[A-Za-z]+/", $nombre)) {
         $error = true;
         $message = 'Nombre';    
     }
-    if (!is_string($apellidos) && !preg_match("/[A-Za-z]+/", $apellidos)) {
+    if (!is_string($apellidos) || !preg_match("/[A-Za-z]+/", $apellidos)) {
         $error = true;
         $message = 'Apellidos';    
     }
-    if (!is_numeric($edad) && !filter_var($edad, FILTER_VALIDATE_INT)) {
+    if (!is_numeric($edad) || !filter_var($edad, FILTER_VALIDATE_INT)) {
         $error = true;
         $message = 'Edad';    
+    }
+    if (!is_int($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = true;
+        $message = 'Email';    
+    }
+    if (strlen($password) < 5) {
+        $error = true;
+        $message = 'Password';    
     }
 }
 else
