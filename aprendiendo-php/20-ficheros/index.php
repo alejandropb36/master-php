@@ -19,3 +19,10 @@
 
 // Eliminar
 //unlink("fichero_renombrado.txt");
+
+if (file_exists("fichero_t2exto.txt")) {
+    echo "<h1> El fichero si existe!!! </h1>";
+}
+else {
+    echo "<h1> El fichero no existe!!! </h1>";
+}
