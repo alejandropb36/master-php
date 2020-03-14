@@ -8,3 +8,8 @@ select * from usuarios;
 
 select email, (7 + 7) as 'Operacion' from usuarios;
 select id, email, (id + 7) as 'Operacion' from usuarios;
+
+-- Funciones matematicas
+select abs(10 - 30) as  'Operaciones' from usuarios;
+select ceil(9.56) as  'Operaciones' from usuarios;
+select floor(9.56) as  'Operaciones' from usuarios;
