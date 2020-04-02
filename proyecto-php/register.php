@@ -38,6 +38,8 @@ if (isset($_POST)) {
     $guardar_usuario = false;
     if(count($errors) == 0) {
         $guardar_usuario = true;
+        
+        $password_segura = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
     } else {
         $_SESSION['errors'] = $errors;
         header('Location: index.php');
