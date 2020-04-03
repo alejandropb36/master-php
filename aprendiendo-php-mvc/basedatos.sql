@@ -1,3 +1,6 @@
+create database notas_master;
+use notas_master;
+
 create table usuarios(
     id          int(255) auto_increment not null,
     nombre      varchar(100) not null,

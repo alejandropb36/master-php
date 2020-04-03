@@ -9,9 +9,8 @@ class ModeloBase {
         $this->db = DataBase::conectar();
     }
     
-    public function conseguirTodos() {
-        var_dump($this->db);
-        return "Sancando todos los usuarios";
+    public function conseguirTodos($tabla) {
+        return $this->db->query("select * from $tabla order by id desc");
     }
 }
 

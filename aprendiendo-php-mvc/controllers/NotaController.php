@@ -9,6 +9,9 @@ class NotaController {
         $nota->nombre = "Hola";
         $nota->contenido = "Hola php MVC";
         
+        $notas = $nota->conseguirTodos('notas');
+        
+        
         require_once 'views/notas/listar.php';
     }
     

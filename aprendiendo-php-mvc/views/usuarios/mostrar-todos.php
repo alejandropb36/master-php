@@ -1,4 +1,6 @@
-<h1>
-    <?= $todos_los_usuarios ?>
-</h1>
+<h1>Listado de usuarios</h1>
+
+<?php while($usuario = $usuarios->fetch_object()) : ?>
+    <?= $usuario->nombre?> - <?= $usuario->email?> <br>
+<?php endwhile; ?>
 
