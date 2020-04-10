@@ -5,8 +5,8 @@
 <?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
     <strong class="alert_red">Registro fallido</strong>
 <?php endif;?>
-
 <?php Utils::deleteSesion('register'); ?>
+
 <form action="<?= base_url ?>usuario/save" method="POST">
     <label for="nombre">Nombre: </label>
     <input type="text" name="nombre" required> 

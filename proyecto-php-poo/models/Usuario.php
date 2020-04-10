@@ -88,4 +88,19 @@ class Usuario extends ModelBase{
             $result = true;
         return $result;
     }
+
+    public function login($email, $password) {
+        $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+        $login = $this->db->query($sql);
+
+        if($login && $login->num_rows == 1) {
+            $usuario = $login->fetch_object();
+            
+            $verify = password_verify($password, $usuario->password);
+            if($verify)
+                return $usuario;
+        }
+
+        return false;
+    }
 }
