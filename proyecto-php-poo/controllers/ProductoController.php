@@ -38,6 +38,19 @@ class productoController {
                 $producto->setPrecio($precio);
                 //$producto->setImagen($imagen);
 
+                // Subir imagenes
+                $file = $_FILES['imagen'];
+                $filename = $file['name'];
+                $mimetype = $file['type'];
+
+                if($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png') {
+                    if(!is_dir('uploads/images')) {
+                        mkdir('uploads/images', 0777, true);
+                    }
+                    move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
+                    $producto->setImagen($filename);
+                }
+
                 
 
                 $save = $producto->save();
@@ -54,5 +67,31 @@ class productoController {
         }
 
         header('Location:' . base_url . 'producto/gestion');
+    }
+
+    public function delete() {
+        Utils::isAdmin();
+        if(isset($_GET['id'])){
+            $producto = new Producto();
+            $producto->setId($_GET['id']);
+            $delete = $producto->delete();
+            if($delete)
+                $_SESSION['producto-eliminar'] = 'complete';
+            else
+                $_SESSION['producto-eliminar'] = 'failed';
+
+        } else {
+            $_SESSION['producto-eliminar'] = 'failed';
+        }
+        header('Location:' . base_url . 'producto/gestion');
+    }
+
+    public function editar() {
+        Utils::isAdmin();
+        if(isset($_GET['id'])) {
+            $edit = true;
+        }
+        
+        require_once 'views/producto/crear.php';
     }
 }

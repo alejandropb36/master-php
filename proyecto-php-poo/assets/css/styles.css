@@ -232,6 +232,14 @@ button, .button{
     margin-bottom: 5px;
 }
 
+.warning {
+    background: rgba(211, 144, 20, 0.986);
+}
+
+.danger {
+    background: rgb(211, 70, 70);
+}
+
 /* central */
 #central {
     width: 72%;

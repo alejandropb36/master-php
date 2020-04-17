@@ -105,12 +105,24 @@ class Producto extends ModelBase {
             {$this->getStok()},
             null,
             CURDATE(),
-            null
+            '{$this->getImagen()}'
         )";
         $save = $this->db->query($sql);
 
         $result = false;
         if($save)
+            $result = true;
+        return $result;
+    }
+
+    public function delete() {
+        $sql = "DELETE FROM productos
+            WHERE id = {$this->getId()};  
+        ";
+        $delete = $this->db->query($sql);
+
+        $result = false;
+        if($delete)
             $result = true;
         return $result;
     }
