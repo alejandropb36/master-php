@@ -38,22 +38,28 @@ class productoController {
                 $producto->setPrecio($precio);
                 //$producto->setImagen($imagen);
 
-                // Subir imagenes
-                $file = $_FILES['imagen'];
-                $filename = $file['name'];
-                $mimetype = $file['type'];
-
-                if($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png') {
-                    if(!is_dir('uploads/images')) {
-                        mkdir('uploads/images', 0777, true);
+                if(isset($_FILES['imagen'])) {
+                    // Subir imagenes
+                    $file = $_FILES['imagen'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
+    
+                    if($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png') {
+                        if(!is_dir('uploads/images')) {
+                            mkdir('uploads/images', 0777, true);
+                        }
+                        move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
+                        $producto->setImagen($filename);
                     }
-                    move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
-                    $producto->setImagen($filename);
                 }
 
-                
-
-                $save = $producto->save();
+                if(isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $producto->setId($id);
+                    $save = $producto->edit();
+                } else {
+                    $save = $producto->save();
+                }
                 if($save) {
                     $_SESSION['producto'] = "complete";
                 } else {
@@ -88,10 +94,18 @@ class productoController {
 
     public function editar() {
         Utils::isAdmin();
+
         if(isset($_GET['id'])) {
             $edit = true;
+            $producto = new Producto();
+            $producto->setId($_GET['id']);
+            $pro = $producto->getOne();
+            require_once 'views/producto/crear.php';
+        } else {
+            header('Location:' . base_url . 'producto/gestion');
         }
-        
-        require_once 'views/producto/crear.php';
+    }
+
+    public function edit() {
     }
 }

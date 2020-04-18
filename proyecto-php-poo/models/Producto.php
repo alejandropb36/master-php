@@ -88,6 +88,12 @@ class Producto extends ModelBase {
     function setImagen($imagen) {
         $this->imagen = $imagen;
     }
+    
+    public function getOne() {
+        $sql = "SELECT * FROM productos WHERE id = {$this->getId()}";
+        $producto = $this->db->query($sql);
+        return $producto->fetch_object();
+    }
 
     public function getAll() {
         $sql = "SELECT * FROM productos ORDER BY id DESC";
@@ -107,6 +113,26 @@ class Producto extends ModelBase {
             CURDATE(),
             '{$this->getImagen()}'
         )";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if($save)
+            $result = true;
+        return $result;
+    }
+
+    public function edit() {
+        $sql = "UPDATE productos SET
+            categoria_id = '{$this->getCategoria_id()}',
+            nombre = '{$this->getNombre()}',
+            descripcion = '{$this->getDescripcion()}',
+            precio = '{$this->getPrecio()}',
+            stok = {$this->getStok()}
+        ";
+        if($this->getImagen() != '' && $this->getImagen() != null) 
+            $sql .= ", imagen = '{$this->getImagen()}'";
+        
+        $sql .= " WHERE id = {$this->getId()}";
         $save = $this->db->query($sql);
 
         $result = false;

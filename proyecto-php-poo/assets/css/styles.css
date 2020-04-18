@@ -317,3 +317,7 @@ td {
     background: #222;
     border-top: 4px solid #01b1ea;
 }
+
+.thumb {
+    width: 100px;
+}
