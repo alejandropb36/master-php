@@ -32,6 +32,12 @@ class Categoria extends ModelBase {
         return $this->db->query($sql);
     }
 
+    public function getOne() {
+        $sql = "SELECT * FROM categorias WHERE id = {$this->getId()}";
+        $producto = $this->db->query($sql);
+        return $producto->fetch_object();
+    }
+
     public function save() {
         $sql = "INSERT INTO categorias VALUES(
             null,

@@ -101,6 +101,17 @@ class Producto extends ModelBase {
         return $productos;
     }
 
+    public function getAllCategory() {
+        $sql = "SELECT p.*, c.nombre
+            FROM productos p
+                INNER JOIN categorias c ON c.id = p.categoria_id
+            WHERE p.categoria_id = {$this->getCategoria_id()}
+            ORDER BY id DESC
+        ";
+        $productos = $this->db->query($sql);
+        return $productos;
+    }
+
     public function getRandom($limit) {
         $sql = "SELECT * FROM productos ORDER BY RAND() LIMIT $limit";
         $productos = $this->db->query($sql);

@@ -110,6 +110,12 @@ class productoController {
         }
     }
 
-    public function edit() {
+    public function ver() {
+        if(isset($_GET['id'])) {
+            $producto = new Producto();
+            $producto->setId($_GET['id']);
+            $pro = $producto->getOne();
+        }
+        require_once 'views/producto/ver.php';
     }
 }
