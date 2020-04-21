@@ -102,7 +102,7 @@ class Producto extends ModelBase {
     }
 
     public function getAllCategory() {
-        $sql = "SELECT p.*, c.nombre
+        $sql = "SELECT p.*, c.nombre categorianombre
             FROM productos p
                 INNER JOIN categorias c ON c.id = p.categoria_id
             WHERE p.categoria_id = {$this->getCategoria_id()}
