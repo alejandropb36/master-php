@@ -367,3 +367,9 @@ td {
 .thumb {
     width: 100px;
 }
+
+/* Carrito */
+
+.img_carrito {
+    height: 80px;
+}
