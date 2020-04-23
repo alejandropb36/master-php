@@ -4,33 +4,44 @@ class carritoController {
 
     public function index() {
         var_dump($_SESSION['carrito']);
-        echo "Controlador de pedido, accion index";
     }
 
-    public function add() {
-
-        if(isset($_GET['id'])) {
+    public function add(){
+        if(isset($_GET['id'])){
             $producto_id = $_GET['id'];
-            echo "<h1> Holi id: $producto_id  </h1>";
-            if(!isset($_SESSION['carrito'])) {
-                $_SESSION['carrito'];
-            }
+        }else{
+            header('Location:'.base_url);
+        }
+        
+        if(isset($_SESSION['carrito'])){
+            $counter = 0;
+            foreach($_SESSION['carrito'] as $indice => $elemento){
+                if($elemento['id_producto'] == $producto_id){
+                    $_SESSION['carrito'][$indice]['unidades']++;
+                    $counter++;
+                }
+            }   
+        }
+        
+        if(!isset($counter) || $counter == 0){
+            // Conseguir producto
             $producto = new Producto();
             $producto->setId($producto_id);
-            $product = $producto->getOne();
-
-            if(is_object($product)) {
-                $_SESSION['carrito'][] = array (
-                    "id_producto" => $product->id,
-                    "precio" => $product->precio,
+            $producto = $producto->getOne();
+ 
+            // Añadir al carrito
+            if(is_object($producto)){
+                $_SESSION['carrito'][] = array(
+                    "id_producto" => $producto->id,
+                    "precio" => $producto->precio,
                     "unidades" => 1,
-                    "producto" => $product
+                    "producto" => $producto
                 );
             }
         }
-
-        header("Location:" . base_url . "carrito/index");
-    }
+        
+        header("Location:".base_url."carrito/index");
+    } 
 
     public function remove() {
         
