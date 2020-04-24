@@ -373,3 +373,19 @@ td {
 .img_carrito {
     height: 80px;
 }
+
+.total_carrito {
+    width: 400px;
+    float: right;
+}
+
+.total_carrito h3 {
+    margin-top: 5px;
+    display: block;
+    float: left;
+}
+
+.button-pedido {
+    display: block;
+    width: 100px;
+}
