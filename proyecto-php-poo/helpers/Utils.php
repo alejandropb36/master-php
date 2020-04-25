@@ -16,6 +16,12 @@ class Utils {
         }
     }
 
+    public static function isAuthenticate() {
+        if(isset($_SESSION['identity']))
+            return true;
+        return false;
+    }
+
     public static function showCategorias() {
         require_once 'models/Categoria.php';
         $categoria = new Categoria();
