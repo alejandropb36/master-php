@@ -29,8 +29,10 @@ class pedidoController {
                     $pedido->setUsuario_id($usuario_id);
                     $pedido->setCoste($stats['total']);
                     $save = $pedido->save();
+
+                    $saveLineas = $pedido->saveLinea();
                     
-                    if($save){
+                    if($save && $saveLineas){
                         $_SESSION['pedido'] = "complete";
                     } else {
                         $_SESSION['pedido'] = "failed";
@@ -39,9 +41,13 @@ class pedidoController {
                     $_SESSION['pedido'] = "failed";
                 }
             }
-
+            header("Location:" . base_url . "pedido/confirmado");
         } else {
             header("Location:" . base_url);
         }
+    }
+
+    public function confirmado() {
+        require_once 'views/pedido/confirmado.php';
     }
 }

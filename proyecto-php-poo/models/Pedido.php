@@ -94,6 +94,12 @@ class Pedido extends ModelBase {
         return $producto->fetch_object();
     }
 
+    public function getOneByUser() {
+        $sql = "SELECT * FROM pedidos WHERE id = {$this->getId()}";
+        $producto = $this->db->query($sql);
+        return $producto->fetch_object();
+    }
+
     public function getAll() {
         $sql = "SELECT * FROM pedidos ORDER BY id DESC";
         $productos = $this->db->query($sql);
@@ -113,6 +119,24 @@ class Pedido extends ModelBase {
             CURTIME()
         )";
         $save = $this->db->query($sql);
+
+        $result = false;
+        if($save)
+            $result = true;
+        return $result;
+    }
+
+    public function saveLinea() {
+        $sql = "SELECT LAST_INSERT_ID() as pedido";
+
+        $query = $this->db->query($sql);
+        $pedido_id = $query->fetch_object()->pedido;
+
+        foreach($_SESSION['carrito'] as $elemento) {
+            $producto = $elemento['producto'];
+            $insert = "INSERT INTO lineas_pedidos VALUES (null, {$pedido_id}, {$producto->id}, {$elemento['unidades']})";
+            $save = $this->db->query($insert);
+        }
 
         $result = false;
         if($save)
