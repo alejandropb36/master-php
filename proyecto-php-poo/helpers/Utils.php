@@ -43,4 +43,21 @@ class Utils {
 
         return $stats;
     }
+    
+    public static function showStatus($status) {
+        switch ($status) {
+            case 'confirm':
+                return 'Pendiente';
+            break;
+            case 'preparation':
+                return 'En preparacion';
+            break;
+            case 'ready':
+                return 'Preparado';
+            break;
+            case 'sended':
+                return 'Enviado';
+            break;
+        }
+    }
 }

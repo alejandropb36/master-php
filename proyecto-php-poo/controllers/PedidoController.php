@@ -48,6 +48,7 @@ class pedidoController {
     }
 
     public function confirmado() {
+        Utils::isAuthenticate();
         if(isset($_SESSION['identity'])) {
             $identity = $_SESSION['identity'];
             $pedido = new Pedido();
@@ -60,5 +61,55 @@ class pedidoController {
         }
 
         require_once 'views/pedido/confirmado.php';
+    }
+    
+    public function mispedidos() {
+        Utils::isAuthenticate();
+        $identity = $_SESSION['identity'];
+        $pedido = new Pedido();
+        $pedido->setUsuario_id($identity->id);
+        $pedidos = $pedido->getAllByUser();
+        require_once 'views/pedido/mis_pedidos.php';
+    }
+    
+    public function detalle() {
+        Utils::isAuthenticate();
+        
+        if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido = $pedido->getOne();
+
+            $pedido_productos = new Pedido();
+            $productos = $pedido_productos->getProductosByPedido($pedido->id);
+            
+            require_once 'views/pedido/detalle.php';
+        } else {
+            header('Location:' . base_url . 'pedido/mispedidos');
+        }
+    }
+    
+    public function gestion() {
+        Utils::isAdmin();
+        $gestion = true;
+        $pedido = new Pedido();
+        $pedidos = $pedido->getAll();
+        require_once 'views/pedido/mis_pedidos.php';
+    }
+    
+    public function estado() {
+        Utils::isAdmin();
+        if(isset($_POST)) {
+            $id = $_POST['id'];
+            $estado = $_POST['estado'];
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido->setEstado($estado);
+            $pedido->edit();
+            header('Location:' . base_url . 'pedido/detalle?id=' . $id);
+        } else {
+            header('Location:' . base_url);
+        }
     }
 }
