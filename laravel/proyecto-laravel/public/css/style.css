@@ -63,6 +63,10 @@ form .avatar{
     width: 100%;
 }
 
+.image-detail {
+    max-height: 500px;
+}
+
 .likes {
     float: left;
     padding-left: 20px;
@@ -73,3 +77,7 @@ form .avatar{
     width: 30px;
 }
 
+
+.pub_image_detail .comments {
+    padding: 20px;
+}
