@@ -36,7 +36,20 @@
                             </p>
                         </div>
                         <div class="likes">
-                            <img src="{{ asset('img/gray-heart.png') }}" alt="unlike">
+                            <?php $user_like = false; ?>
+                            @foreach($image->likes as $like)
+                                @if ($like->user->id == Auth::user()->id)
+                                    <?php $user_like = true; ?>
+                                @endif
+                            @endforeach
+                            
+                            @if ($user_like)
+                                <img src="{{ asset('img/red-heart.png') }}" class="btn-dislike">
+                            @else
+                                <img src="{{ asset('img/gray-heart.png') }}" class="btn-like">
+                            @endif
+                            
+                            <span class="number-like">{{ count($image->likes) }}</span>
                         </div>
                         <div class="comments">
                             <a href="" class="btn btn-sm btn-warning btn-comments">
@@ -52,4 +65,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/like.js') }}"  type="text/javascript"></script>
 @endsection

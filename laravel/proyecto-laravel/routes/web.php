@@ -40,6 +40,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Rutas de Usuarios
  */
@@ -58,3 +59,7 @@ Route::get('/image/detail/{id}', 'ImageController@detail')->name('image.detail')
 // Rutas de Comentarios
 Route::post('/comment', 'CommentController@store')->name('comment.store');
 Route::get('/comment/{id}', 'CommentController@delete')->name('comment.delete');
+
+// Rutas de Likes
+Route::get('/like/{imageId}', 'LikeController@like')->name('like.save');
+Route::get('/dislike/{imageId}', 'LikeController@disLike')->name('like.delete');
