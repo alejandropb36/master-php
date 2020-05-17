@@ -57,3 +57,4 @@ Route::get('/image/detail/{id}', 'ImageController@detail')->name('image.detail')
 
 // Rutas de Comentarios
 Route::post('/comment', 'CommentController@store')->name('comment.store');
+Route::get('/comment/{id}', 'CommentController@delete')->name('comment.delete');

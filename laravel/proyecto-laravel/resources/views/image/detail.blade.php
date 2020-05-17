@@ -47,15 +47,32 @@
 
                             <input type="hidden" name="image_id" value="{{$image->id}}">
                             <p>
-                                <textarea name="content" class="form-control"></textarea>
+                                <textarea name="content" class="form-control {{$errors->has('content') ? 'is-invalid' : ''}}"></textarea>
                                 @if($errors->has('content'))
-                                    <span class="ivalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong> {{ $errors->first('content') }} </strong>
                                     </span>
                                 @endif
                             </p>
                             <button type="submit" class="btn btn-primary">Comentar</button>
                         </form>
+                        <hr>
+                        @foreach ($image->comments as $comment)
+                            <div class="comment">
+                                <span class="nickname"> {{'@' . $comment->user->nick }} </span>
+                                <span class="nickname"> {{' | ' . \FormatTime::LongTimeFilter($comment->created_at)}} </span>
+
+                                <p>
+                                    {{ $comment->content }}
+                                    <br>
+                                    @if(Auth::check() && ($comment->user_id == Auth::user()->id || $image->user->id == Auth::user()->id))
+                                        <a href="{{route('comment.delete', ['id' => $comment->id])}}" class="btn btn-sm btn-danger">
+                                            Eliminar
+                                        </a>
+                                    @endif
+                                </p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
