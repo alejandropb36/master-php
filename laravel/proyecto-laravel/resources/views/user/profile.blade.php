@@ -6,11 +6,9 @@
         <div class="col-md-8">
             @include('includes.message')
             
-            @foreach ($images as $image)
+            @foreach ($user->images as $image)
                 @include('includes.image', ['image' => $image])
             @endforeach
-            {{-- Paginacion --}}
-            {{ $images->links() }}
         </div>
     </div>
 </div>

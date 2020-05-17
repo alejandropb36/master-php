@@ -47,6 +47,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/configuracion', 'UserController@config')->name('config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+Route::get('/user/{id}', 'UserController@profile')->name('user.profile');
 
 /**
  * Rutas de Imagenes
@@ -63,3 +64,4 @@ Route::get('/comment/{id}', 'CommentController@delete')->name('comment.delete');
 // Rutas de Likes
 Route::get('/like/{imageId}', 'LikeController@like')->name('like.save');
 Route::get('/dislike/{imageId}', 'LikeController@disLike')->name('like.delete');
+Route::get('/likes', 'LikeController@index')->name('like.index');

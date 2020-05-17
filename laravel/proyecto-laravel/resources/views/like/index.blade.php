@@ -4,18 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @include('includes.message')
-            
-            @foreach ($images as $image)
-                @include('includes.image', ['image' => $image])
-            @endforeach
-            {{-- Paginacion --}}
-            {{ $images->links() }}
+           <h1>Mis imagenes favoritas</h1>
+           <hr>
+           @foreach ($likes as $like)
+                @include('includes.image', ['image' => $like->image])
+           @endforeach
+           {{-- Paginacion --}}
+           {{ $likes->links() }}
         </div>
     </div>
 </div>
 @endsection
-
 @section('scripts')
     <script src="{{ asset('js/like.js') }}"  type="text/javascript"></script>
 @endsection

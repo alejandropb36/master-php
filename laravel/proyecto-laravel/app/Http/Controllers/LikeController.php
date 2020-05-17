@@ -12,6 +12,17 @@ class LikeController extends Controller
         $this->middleware('auth');
     }
 
+    public function index() {
+        $user = \Auth::user();
+        $likes = Like::orderBy('id', 'desc')
+        ->where('user_id' , $user->id)
+        ->paginate(5);
+
+        return view('like.index', [
+            'likes' => $likes
+        ]);
+    }
+
     public function like($imageId) {
         $user = \Auth::user();
 
@@ -51,4 +62,6 @@ class LikeController extends Controller
             'message' => 'El like no existe'
         ], 400);
     }
+
+    
 }
