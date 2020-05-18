@@ -86,3 +86,20 @@ form .avatar{
     color: gray;
     font-size: 11px;
 }
+
+.data-user .container-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 900px;
+    overflow: hidden;
+}
+
+.data-user .container-avatar img{
+    width: 100%;
+    border-radius: 900px;
+    overflow: hidden;
+}
+
+.user-info {
+    margin-left: 10px;
+}
