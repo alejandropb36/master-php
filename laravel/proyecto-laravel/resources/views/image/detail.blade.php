@@ -48,6 +48,14 @@
                         
                         <span class="number-like">{{ count($image->likes) }}</span>
                     </div>
+
+                    @if (Auth::user() && Auth::user()->id == $image->user_id)    
+                        <div class="actions">
+                            <a href="" class="btn btn-sm btn-primary">Actualizar</a>
+                            <a href="" class="btn btn-sm btn-danger">Borrar</a>
+                        </div>
+                    @endif
+
                     <div class="clearfix"></div>
                     <div class="comments">
                         <h2>
