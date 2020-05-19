@@ -1,5 +1,4 @@
 'use strict'
-
 const base_url = 'http://proyecto-laravel.devel/';
 
 $('.btn-like').css('cursor', 'pointer');
