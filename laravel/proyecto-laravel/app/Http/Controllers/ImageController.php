@@ -68,4 +68,36 @@ class ImageController extends Controller
             'image' => $image
         ]);
     }
+
+    public function delete($id) {
+        $user = \Auth::user();
+        $image = Image::find($id);
+        $comments = $image->comments;
+        $likes = $image->likes;
+
+        if($user && $image && $image->user->id == $user->id) {
+            if($comments && count($comments) > 0) {
+                foreach($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+
+            if($likes && count($likes) > 0) {
+                foreach($likes as $like) {
+                    $like->delete();
+                }
+            }
+
+            Storage::disk('images')->delete($image->image_path);
+
+            $image->delete();
+
+            $message = 'La imagen se ha borrado correctamente';
+        } else {
+            $message = 'Error al eliminar la imagen';
+        }
+
+        return redirect()->route('home')->with(['message' => $message]);
+
+    }
 }
