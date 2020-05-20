@@ -9,6 +9,10 @@
                     <div class="container-avatar">
                         <img src=" {{ route('user.avatar', ['filename' => $user->image])}} " alt="Avatar de usuario" class="avatar">
                     </div>
+                @else
+                    <div class="container-avatar">
+                        <img src=" {{ asset('img/usuario.png')}} " alt="Avatar de usuario" class="avatar">
+                    </div>
                 @endif
                 <br>
                 <div class="user-info">

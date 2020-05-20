@@ -48,6 +48,7 @@ Route::get('/configuracion', 'UserController@config')->name('config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 Route::get('/user/{id}', 'UserController@profile')->name('user.profile');
+Route::get('/users/{search?}', 'UserController@index')->name('user.index');
 
 /**
  * Rutas de Imagenes
