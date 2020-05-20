@@ -57,6 +57,8 @@ Route::post('/image/save', 'ImageController@save')->name('image.save');
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/image/detail/{id}', 'ImageController@detail')->name('image.detail');
 Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
+Route::get('/image/edit/{id}', 'ImageController@edit')->name('image.edit');
+Route::put('/image/update', 'ImageController@update')->name('image.update');
 
 // Rutas de Comentarios
 Route::post('/comment', 'CommentController@store')->name('comment.store');
