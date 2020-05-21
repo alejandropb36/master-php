@@ -1,3 +1,17 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+index:
+    path: /animalesyaml/{nombre}/{apellidos}
+    controller: App\Controller\HomeController::animales
+    defaults: {nombre: 'Alejandro', apellidos: 'Ponce'}
+    methods: [GET]
+    requirements:
+        nombre: '[a-zA-Z]+'
+        apellidos: '[0-9]+'
+
+
+salir:
+    path: /salir
+    controller: App\Controller\HomeController::salir
