@@ -43,8 +43,19 @@
 
     {% if aves.color ends with 'g' %}
         <h1>Empieza con g</h1>
-
     {% endif %}
+
+    <br>
+    <hr>
+    <h1>Funciones predefinidas</h1>
+    {# Funciones predefinidas hay mas en documentacion de twig #}
+    {{ min([9,8,3,2,6,0,12]) }}
+    {{ random(animales) }}
+    {{ max([9,8,3,2,6,0,12]) }}
+    <br>
+    {% for i in range(0, 100, 5) %}
+        {{i}}<br>
+    {% endfor %}
 
 
 {% endblock %}
