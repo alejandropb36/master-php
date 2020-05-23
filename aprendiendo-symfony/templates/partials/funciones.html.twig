@@ -9,3 +9,10 @@
 {% endfor %}
 
 <h2> Mi nombre es: {{nombre}}<h2>
+
+<hr>
+<h1>Filtros</h1>
+{{animales|length}}
+
+{% set email = '      mail@mail.com     ' %}
+{{dump(email|trim|upper|lower)}}
