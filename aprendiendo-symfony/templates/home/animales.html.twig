@@ -12,4 +12,14 @@
     <p>Nombre: {{ nombre }}  Apellidos: {{apellidos}} </p> #}
     {% set perro = 'Pastor aleman' %}
     <h4>{{ perro }}</h4>
+
+    {# Trabajar con arrays #}
+    {{ dump(animales) }}
+    {{animales[1]}}
+
+    {# Trabajar con arrays asociativos #}
+    {{ dump(aves) }}
+    {{ aves.tipo ~ ' - ' ~ aves.raza}}
+
+
 {% endblock %}
