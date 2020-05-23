@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<hmtl lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block titulo %} Inicio {% endblock %} - Aprendiendo Symfony
+        </title>
+
+        {# Styles #}
+        {% block styles %}{% endblock %}
+
+    </head>
+    <body>
+        <div id="header">
+            {% block cabecera %}
+                <h1> Cabecera de la plantilla </h1>
+            {% endblock %}
+        </div>
+        
+        <hr>
+        <section id="content">
+            {% block contenido %}
+                <p>Contenido por defecto</p>
+            {% endblock %}
+        </section>
+
+        <hr>
+        <footer>
+            @alejandropb36
+        </footer>
+
+        {# Scripts #}
+        {% block scripts %}{% endblock %}
+
+    </body>
+</html>
