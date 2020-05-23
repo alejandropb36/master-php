@@ -21,5 +21,25 @@
     {{ dump(aves) }}
     {{ aves.tipo ~ ' - ' ~ aves.raza}}
 
+    {# Bloques condicionales #}
+    {% if aves.tipo == 'palomo' %}
+        <h2>Hay palomos a la vista</h2>
+    {% else %}
+        <h2>No hay polomos a la vista</h2>
+    {% endif %}
+
+    {# Bucles #}
+    {% if animales|length >= 1 %}
+        <ul>
+            {% for animal in animales %}
+                <li>{{animal}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% for i in 0..animales|length %}
+        {{i}}
+    {% endfor %}
+
 
 {% endblock %}
