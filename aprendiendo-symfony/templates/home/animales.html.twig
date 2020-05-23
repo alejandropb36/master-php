@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block contenido %}
-    <h1>{{ title }}</h1>
-    <p>Nombre: {{ nombre }}  Apellidos: {{apellidos}} </p>
+    {# <h1>{{ title }}</h1>
+    <p>Nombre: {{ nombre }}  Apellidos: {{apellidos}} </p> #}
+    {% set perro = 'Pastor aleman' %}
+    <h4>{{ perro }}</h4>
 {% endblock %}
