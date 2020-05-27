@@ -14,8 +14,15 @@ class AnimalController extends AbstractController
      */
     public function index()
     {
+        // Caragr el repositorio
+        $animalRepo =$this->getDoctrine()->getRepository(Animal::class);
+
+        // Consulta
+        $animals = $animalRepo->findAll();
+
         return $this->render('animal/index.html.twig', [
             'controller_name' => 'AnimalController',
+            'animals' => $animals
         ]);
     }
 
