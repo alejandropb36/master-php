@@ -76,4 +76,31 @@ class AnimalController extends AbstractController
 
         return new Response('El animal elegido es de tipo ' . $animal->getTipo() . '  de la raza ' . $animal->getRaza());
     }
+
+
+    /**
+     * @Route("/animal/update/{id}", name="animal.update")
+     */
+    public function update($id)
+    {
+        $doctrine =$this->getDoctrine();
+
+        $entityManager = $doctrine->getManager();
+
+        $animalRepo = $entityManager->getRepository(Animal::class);
+
+        $animal = $animalRepo->find($id);
+
+        if(!$animal) {
+            return new Response('No existe el animal');
+        }
+
+        $animal->setTipo('Caninoi');
+        $animal->setColor('Rojo');
+
+        $entityManager->persist($animal);
+        $entityManager->flush();
+
+        return new Response(json_encode($animal));
+    }
 }
