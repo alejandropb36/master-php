@@ -24,6 +24,16 @@ class AnimalController extends AbstractController
             'tipo' => 'Ave'
         ]);
 
+        // QueryBilder
+        $queryBuilder = $animalRepo->createQueryBuilder('a')
+            // ->andWhere("a.raza = :raza")
+            // ->setParameter('raza', 'Canino')
+            ->orderBy('a.color', 'asc')
+            ->getQuery();
+        $resultSet = $queryBuilder->execute();
+
+        var_dump($resultSet);
+
         var_dump($animal);
         return $this->render('animal/index.html.twig', [
             'controller_name' => 'AnimalController',
