@@ -103,4 +103,23 @@ class AnimalController extends AbstractController
 
         return new Response(json_encode($animal));
     }
+
+    /**
+     * @Route("/animal/delete/{id}", name="animal.delete")
+     */
+    public function delete(Animal $animal)
+    {
+        if(!$animal) {
+            return new Response('El animal no existe');
+        }
+        $doctrine =$this->getDoctrine();
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($animal);
+
+        $entityManager->flush();
+
+        var_dump($animal);
+        return new Response('El animal se ha borrado correctamente');
+    }
 }
