@@ -34,7 +34,15 @@ class AnimalController extends AbstractController
 
         var_dump($resultSet);
 
-        var_dump($animal);
+        // DQL
+        $entityManager = $this->getDoctrine()->getManager();
+        $dql = "SELECT a FROM App\Entity\Animal a WHERE a.raza = 'canino'";
+        $query = $entityManager->createQuery($dql);
+        $resultSetDQL = $query->execute();
+
+        var_dump($resultSetDQL);
+
+        // var_dump($animal);
         return $this->render('animal/index.html.twig', [
             'controller_name' => 'AnimalController',
             'animals' => $animals
