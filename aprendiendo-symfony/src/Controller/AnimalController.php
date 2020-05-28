@@ -5,7 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Animal;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AnimalController extends AbstractController
 {
@@ -59,6 +63,26 @@ class AnimalController extends AbstractController
         return $this->render('animal/index.html.twig', [
             'controller_name' => 'AnimalController',
             'animals' => $animals
+        ]);
+    }
+
+    /**
+     * @Route("/animal/crear", name="animal.create")
+     */
+    public function create()
+    {
+        $animal = new Animal();
+        $form = $this->createFormBuilder($animal)
+            ->setAction($this->generateUrl('animal.save'))
+            ->setMethod('POST')
+            ->add('tipo', TextType::class)
+            ->add('color', TextType::class)
+            ->add('raza', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->getForm();
+        
+        return $this->render('animal/crear-animal.html.twig',[
+            'form' => $form->createView()
         ]);
     }
 
