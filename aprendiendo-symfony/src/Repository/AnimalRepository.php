@@ -10,10 +10,10 @@ class AnimalRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::parent($registry, Animal::class);
+        parent::__construct($registry, Animal::class);
     }
 
-    public function findByColor($order)
+    public function getAnimalsOrderColor($order)
     {
         $queryBuilder = $this->createQueryBuilder('a')
         // ->andWhere("a.raza = :raza")

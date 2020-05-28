@@ -53,7 +53,7 @@ class AnimalController extends AbstractController
         var_dump($resultSetSQL);
 
         // Animal Repository
-        var_dump('Repository', $animalRepo->findByColor('asc'));
+        var_dump('Repository', $animalRepo->getAnimalsOrderColor('asc'));
 
         // var_dump($animal);
         return $this->render('animal/index.html.twig', [
