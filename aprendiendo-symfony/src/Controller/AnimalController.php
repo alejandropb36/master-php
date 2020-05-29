@@ -10,6 +10,7 @@ use App\Entity\Animal;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AnimalController extends AbstractController
 {
@@ -69,11 +70,11 @@ class AnimalController extends AbstractController
     /**
      * @Route("/animal/crear", name="animal.create")
      */
-    public function create()
+    public function create(Request $request)
     {
         $animal = new Animal();
         $form = $this->createFormBuilder($animal)
-            ->setAction($this->generateUrl('animal.save'))
+            // ->setAction($this->generateUrl('animal.save'))
             ->setMethod('POST')
             ->add('tipo', TextType::class, [
                 'label' => 'Tipo de animal'
@@ -85,6 +86,19 @@ class AnimalController extends AbstractController
                 'attr' => ['class' => 'btn btn-success']
             ])
             ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($animal);
+            $em->flush();
+
+            // Sesion class
+            $session = new Session();
+            $session->getFlashBag()->add('message', 'Animal creado correctamente');
+
+            return $this->redirectToRoute('animal.create');
+        }
         
         return $this->render('animal/crear-animal.html.twig',[
             'form' => $form->createView()
@@ -92,29 +106,12 @@ class AnimalController extends AbstractController
     }
 
     /**
-     * @Route("/animal/save", name="animal.save")
+     * @Route("/animal/save", name="animal.save", methods={"POST"})
      */
-    public function save()
+    public function save(Request $request)
     {
-        // Guardar en una tabla de la base de datos
-
-        // Cargar manager de doctrine
-        $entutyManager = $this->getDoctrine()->getManager();
-
-        // Crear objeto
-        $animal = new Animal();
-
-        $animal->setTipo('Ave');
-        $animal->setColor('Amarillo');
-        $animal->setRaza('Loro');
-
-        // Persistir objetos en la base de datos
-        $entutyManager->persist($animal);
-
-        // Volcar los datos en la tabla
-        $entutyManager->flush();
-
-        return new Response('El animal se ha guardado con el id: ' . $animal->getId());
+        var_dump($request->get('form')); exit;
+        return new Response('Hola desde animal.save');
     }
 
     /**
