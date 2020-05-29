@@ -12,10 +12,33 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Email;
+
+
 use App\Forms\AnimalType;
 
 class AnimalController extends AbstractController
 {
+    /**
+     * @Route("/validar-email/{email}", name="animal.email")
+     */
+    public function ValidarEmail($email) {
+
+        $validation = Validation::createValidator();
+        $errores = $validation->validate($email, [
+            new Email()
+        ]);
+
+        if(count($errores) > 0) {
+            echo "El email tiene errores";
+        } else {
+            echo "Email correcto";
+        }
+        var_dump($email);
+        die();
+    }
+
     /**
      * @Route("/animal", name="animal")
      */
