@@ -28,21 +28,21 @@ class User
      *
      * @ORM\Column(name="role", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $role = 'NULL';
+    private $role;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $name = 'NULL';
+    private $name;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="surname", type="string", length=200, nullable=true, options={"default"="NULL"})
      */
-    private $surname = 'NULL';
+    private $surname;
 
     /**
      * @var string
