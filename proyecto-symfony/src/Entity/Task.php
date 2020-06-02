@@ -59,7 +59,7 @@ class Task
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -136,12 +136,11 @@ class Task
         return $this->user;
     }
 
-    public function setUser(?Users $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
-
 
 }
