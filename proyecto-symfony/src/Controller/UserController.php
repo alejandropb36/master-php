@@ -31,7 +31,7 @@ class UserController extends AbstractController
         $user = new User(); 
         $form =$this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
             $user->setRole('ROLE_USER');
             $encoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
