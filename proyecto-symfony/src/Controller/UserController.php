@@ -24,7 +24,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/register", name="user.register")
+     * @Route("/register", name="user.register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
