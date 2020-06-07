@@ -93,3 +93,9 @@ button:hover,
 input[type="submit"]:hover {
     background: #047425;
 }
+
+.rigth {
+    float: right !important;
+    border-right: 0px;
+    border-left: 1px solid #ccc;
+}

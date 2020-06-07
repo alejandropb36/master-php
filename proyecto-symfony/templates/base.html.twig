@@ -12,10 +12,15 @@
             <div id="header">
                 <h1>Tareas symfony</h1>
                 <ul id="menu">
-                    <li ><a href="{{ path('task') }}">Inicio</a></li>
-                    <li ><a href="{{ path('task') }}">Mis Tareas</a></li>
-                    <li ><a href="{{ path('login') }}">Login</a></li>
-                    <li ><a href="{{ path('user.register') }}">Registro</a></li>
+                    {% if app.user %}
+                        <li ><a href="{{ path('task') }}">Inicio</a></li>
+                        <li ><a href="{{ path('task') }}">Mis Tareas</a></li>
+                        <li class="rigth"><a href="{{ path('logout') }}">Logout</a></li>
+                        <li class="rigth"><a href="#">{{ app.user.name ~ ' ' ~ app.user.surname }}</a></li>
+                    {% else %}
+                        <li class="rigth"><a href="{{ path('login') }}">Login</a></li>
+                        <li class="rigth"><a href="{{ path('user.register') }}">Registro</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="clearfix"></div>
