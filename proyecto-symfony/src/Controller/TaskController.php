@@ -14,8 +14,13 @@ class TaskController extends AbstractController
      */
     public function index()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $taskRepository = $em->getRepository(Task::class);
+        $tasks = $taskRepository->findBy([], ['id' => 'desc']);
+
         return $this->render('task/index.html.twig', [
-            'controller_name' => 'TaskController',
+            'tasks' => $tasks
         ]);
     }
 }
