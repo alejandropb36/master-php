@@ -136,3 +136,7 @@ table td {
     background: red;
     border-color: rgb(190, 7, 7);
 }
+
+.data-task {
+    color: gray;
+}
