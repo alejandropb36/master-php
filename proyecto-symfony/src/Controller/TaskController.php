@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Task;
 use App\Entity\User;
 
@@ -25,7 +26,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/{id}", name="task.detail")
+     * @Route("/task/detail/{id}", name="task.detail")
      */
     public function detail(Task $task)
     {
@@ -36,5 +37,13 @@ class TaskController extends AbstractController
         return $this->render('task/detail.html.twig', [
             'task' => $task
         ]);
+    }
+
+    /**
+     * @Route("/task/create", name="task.create")
+     */
+    public function create(Request $request)
+    {
+        return $this->render('task/create.html.twig', []);
     }
 }
