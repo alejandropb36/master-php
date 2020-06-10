@@ -120,6 +120,10 @@ table td {
     background: #e9ffea;
 }
 
+.buttons {
+    width: 33%;
+}
+
 .buttons a {
     text-decoration: none;
     border: 1px solid #444;
