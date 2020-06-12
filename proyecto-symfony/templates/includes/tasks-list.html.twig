@@ -24,8 +24,10 @@
             <td>{{ task.hours }}</td>
             <td class="buttons">
                 <a href="{{ path('task.detail', {'id': task.id}) }}" class="btn-show">Ver</a>
-                <a href="{{ path('task.edit', {'id': task.id}) }}" class="btn-edit">Editar</a>
-                <a href="" class="btn-delete">Borrar</a>
+                {% if task.user != null and task.user.id == app.user.id %}
+                    <a href="{{ path('task.edit', {'id': task.id}) }}" class="btn-edit">Editar</a>
+                    <a href="{{ path('task.delete', {'id': task.id}) }}" class="btn-delete">Borrar</a>
+                {% endif %}
             </td>
 
         </tr>
