@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/", name="task")
+     * @Route("/tasks", name="task")
      */
     public function index()
     {
